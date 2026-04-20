@@ -80,8 +80,8 @@ async def generar_respuesta(mensaje: str, historial: list[dict]) -> str:
 
     try:
         response = await client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=1024,
+            model="claude-3-5-haiku-20241022",
+            max_tokens=512,
             system=system_prompt,
             messages=mensajes
         )

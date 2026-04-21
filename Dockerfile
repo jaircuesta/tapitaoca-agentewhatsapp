@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 8000
 
 # Comando para arrancar
-CMD ["python", "-m", "uvicorn", "agent.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python3", "-m", "uvicorn", "agent.main:app", "--host", "0.0.0.0", "--port", "8000"]

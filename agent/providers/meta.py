@@ -19,7 +19,7 @@ class ProveedorMeta(ProveedorWhatsApp):
         self.verify_token = os.getenv("META_VERIFY_TOKEN", "agentkit-verify")
         self.api_version = "v21.0"
 
-    async def validar_webhook(self, request: Request) -> dict | int | None:
+    async def validar_webhook(self, request: Request) -> str | None:
         """Meta requiere verificación GET con hub.verify_token."""
         params = request.query_params
         mode = params.get("hub.mode")
@@ -27,7 +27,7 @@ class ProveedorMeta(ProveedorWhatsApp):
         challenge = params.get("hub.challenge")
         if mode == "subscribe" and token == self.verify_token:
             # Meta espera el challenge como respuesta en texto plano
-            return int(challenge)
+            return challenge
         return None
 
     async def parsear_webhook(self, request: Request) -> list[MensajeEntrante]:
